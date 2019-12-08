@@ -1,0 +1,229 @@
+#define _CRT_SECURE_NO_WARNINGS
+/*
+输入总秒数，转换为相应的时、分、秒。
+输入：整数
+输出：时分秒，整数，西文冒号分隔。
+样例：
+3610
+1:00:10
+*/
+#include<stdio.h>
+int main()
+{
+	int i, h, m;
+	scanf("%d", &i);
+	h = i / 3600; i = i % 3600;
+	m = i / 60; i = i % 60;
+	printf("%d:%02d:%d", h, m, i);
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+编写程序检验由三边能否构成三角形，检验方法是任意两边和均要大于第三边。
+输入:
+3边长
+输出：
+若果可以构成，输出YES，否则输出ERROR DATA
+输入：
+1 1 2
+输出：
+ERROR DATA
+*/
+#include<stdio.h>
+int main()
+{
+	float a, b, c;
+	scanf("%f%f%f", &a, &b, &c);
+	if (a + b > c&&a + c > b&&b + c > a) 
+		printf("YES");
+	else 
+		printf("ERROR DATA");
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+输入3个整数，求最大公约数和最小公倍数。
+输入：3个整数
+输出：最大公约数和最小公倍数，空格分隔
+样例：
+2 5 8
+1 40
+*/
+#include<stdio.h>
+int main()
+{
+	int a, b, c, max, min, i;
+	min = -1;
+	scanf("%d%d%d", &a, &b, &c);
+	for (i = 1; i <= a && i <= b && i <= c; i++)
+	{
+		if ((a%i) == 0 && (b%i) == 0 && (c%i) == 0)
+			max = i;
+	}
+	for (i = 1; ; i++)
+	{
+		if ((i%a) == 0 && (i%b) == 0 && (i%c) == 0)
+		{
+			min = i; break;
+		}
+	}
+	printf("%d %d", max, min);
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+求a+aa+aaa+aaaa+... ...+aa...a（n个），其中a为1～9之间的整数。
+例如：当a = 1, n = 3时，求1+11+111之和；
+当a = 5, n =7时，求5＋55＋555＋5555＋55555＋555555＋5555555之和。
+输入：a和n，空格分隔
+输出：和
+样例：
+2 3
+246
+*/
+#include<stdio.h>
+int main()
+{
+	int a, n, i, s = 0, b = 0;
+	scanf("%d%d", &a, &n);
+	b = a;
+		for (i = 1; i <= n; i++)
+		{
+		s += b;
+		b = 10 * b + a;
+	    }
+	printf("%d", s);
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+找出N以内的勾股数的个数。要求找出三个整数a、b、c，它们满足以下的条件：
+a*a+b*b=c*c
+a <= b < c <= N
+输入：N
+输出：勾股数的个数
+样例：
+10
+2
+*/
+#include<stdio.h>
+int main()
+{
+	int a, b, c, n, i=0;
+	scanf("%d", &n);
+	for (c = 2; c <= n; c++)
+	{
+		for (b = 1; b < c; b++)
+		{
+			for (a = 1; a <= b; a++)
+			{
+				if (a*a + b * b == c * c) i++;
+			}
+		}
+	}
+	printf("%d", i);
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*从键盘输入一个正整数（>1)，然后将该整数分解为1和各个质因子的相乘，如果输入的整数本身就是质数，则应分解为1和该数本身相乘。
+输入：
+1个整数
+输出:
+因子分解，因子由小到大输出。如：1*2*2*3
+样例：
+18
+1*2*3*3
+*/
+#include<stdio.h>
+int main()
+{
+	int n, i;
+	scanf("%d", &n);
+	printf("1");
+	for (i = 2; i <= n; i++)
+	{
+		while (n%i == 0)
+		{
+			n = n / i;
+			printf("*%d", i);
+		}
+	}
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+输入由4个字母构成的英文单词，按如下格式输出字母，该字母的ASCII码以及该字母的后继字符。每行输出数据之间用一个空格分隔。如：
+输入:
+word
+输出如下：
+w 119 x
+o 111 p
+r 114 s
+d 100 e
+*/
+#include<stdio.h>
+int main()
+{
+	char a, b, c, d;
+	scanf("%c%c%c%c", &a, &b, &c, &d);
+	printf("%c %d %c\n", a, a, (a + 1));
+	printf("%c %d %c\n", b, b, (b + 1));
+	printf("%c %d %c\n", c, c, (c + 1));
+	printf("%c %d %c\n", d, d, (d + 1));
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+输入公元年份和月份，输出该月份的天数。
+如输入：
+2018,3
+则输出：
+31
+*/
+#include<stdio.h>
+int main()
+{
+	int y, m;
+	scanf("%d,%d", &y, &m);
+	if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
+		printf("31");
+	else if (m == 4 || m == 6 || m == 9 || m == 11)
+		printf("30");
+	else if (m == 2)
+	{
+		if (y % 4 == 0 && y % 100 != 0 || y % 400 == 0)
+			printf("29");
+		else
+			printf("28");
+	}
+	//不合法语句//system ("pause");
+	return 0;
+}

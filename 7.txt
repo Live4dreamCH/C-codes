@@ -1,0 +1,362 @@
+#define _CRT_SECURE_NO_WARNINGS
+/*
+编写程序将4个字符构成的字符串用替换加密法编码为密文，其中加密规则是：将原来的字母用字母表中其后的第3个字母替换。
+注意，最后3个字符用前3个替换，如x用a替换。
+输入：4个字符
+输出：4个字符
+样例：
+Love
+Oryh
+*/
+#include<stdio.h>
+int main()
+{
+	char str[4];
+	int i;
+	for (i = 0; i < 4; i++)
+	{
+		scanf("%c", &str[i]);
+		if ((str[i] >= 'A'&&str[i] < 'X') || (str[i] >= 'a'&&str[i] < 'x'))
+			str[i] = str[i] + 3;
+		else
+			str[i] = str[i] - 26 + 3;
+		printf("%c", str[i]);
+	}
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+闰年计算。程序输入一个正整数Y，以及另一个正整数N。
+计算从Y年开始后的第N个闰年是哪一年（如果Y本身是闰年，则Y之后的第一个闰年是Y）。
+程序输入：
+输入：
+2005 3
+输出：
+2016
+*/
+#include<stdio.h>
+int main()
+{
+	int y, n;
+	scanf("%d %d", &y, &n);
+	while (n > 0)
+	{
+		if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0))
+		{
+			n--;
+			y++;
+		}
+		else
+			y++;
+	}
+	printf("%d", y-1);
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+某城市最高的楼只有一部电梯。该电梯和一般电梯不同的是它依照输入楼层数的先后次序运行。
+电梯最初在0层。运行完一个输入序列后就停止在该楼层，不返回0层。
+编写程序计算电梯运行一个序列的时间。每次都假设电梯在0层开始，无论上一次运行到几层。
+电梯每上1层需要6秒。每下1层需要4秒。如在某层停留，无论上下人多少，均停留5秒。
+输入：楼层的值大于等于1，小于100 ,N=0表示结束输入。
+输出：计算每个序列电梯运行的时间。
+输入：
+2 1 0
+输出：
+26
+*/
+#include<stdio.h>
+int main()
+{
+	int f[100] = { 0 }, t = 0, i;
+	for (i = 1;i<100; i++)
+	{
+		scanf("%d", &f[i]);
+		if (f[i] - f[i - 1] > 0)
+			t = t + 5 + 6 * (f[i] - f[i - 1]);
+		else if (f[i] == 0)
+			break;
+		else
+			t = t + 5 + 4 * (f[i - 1] - f[i]);
+	}
+	printf("%d", t);
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+编写一个程序，当输入一个字符串后，要求不仅能够统计其中字符的个数，还能分别指出其中大、小写字母、数字以及其他字符的个数。
+程序运行结果如下：
+输入：
+I am 21 years old.
+输出(五个数值依次为大、小写字母、数字、其他字符和总共含有的字符个数)：
+1 10 2 5 18
+*/
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char st[100], z, u=0, l=0, n=0, o,i;
+	gets(st);
+	z = strlen(st);
+	for (i = 0; i < 100; i++)
+	{
+		if (st[i] >= 'A'&&st[i] <= 'Z')
+			u++;
+		else if (st[i] >= 'a'&&st[i] <= 'z')
+			l++;
+		else if (st[i] >= '0'&&st[i] <= '9')
+			n++;
+	}
+	o = z - u - l - n;
+	printf("%d %d %d %d %d", u, l, n, o, z);
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+请输入一个正整数：7654321
+该整数按照标准的三位分节格式输出为：7,654,321
+测试样例如下：(逗号是西文的逗号）
+输入：
+7654321
+输出：
+7,654,321
+*/
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int n, i;
+	char a[200];
+	scanf("%d", &n);
+	for (i = 0; i < 100; i++)
+	{
+		if (i % 4 == 3&&n!=0)
+			a[i] = ',';
+		else if (i % 4 != 3 && n != 0)
+		{
+			a[i] = n % 10 + '0';
+			n = n / 10;
+		}
+		else
+			a[i] = 0;
+	}
+	_strrev(a);
+	puts(a);
+	//不合法语句//system ("pause");
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+输入一个整数，判断n是否为素数。
+输入：
+7
+输出：
+YES
+输入：
+9
+输出：
+NO
+*/
+#include<stdio.h>
+int main()
+{
+	int n, i;
+	scanf("%d", &n);
+	if(n==1||n==2)
+		printf("YES");
+	else
+	{
+		for (i = 2; i < n; i+=1)
+		{
+			if (n%i == 0)
+			{
+				printf("NO");
+				break;
+			}
+		}
+		if (i == n)
+			printf("YES");
+	}
+	//不合法语句////不合法语句//system  ("pause");
+	return 0;
+}
+
+
+//translate
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int n, i,a,b,c;
+	char e[5][100] = { "\0","\0","\0","\0","\0" };
+	scanf("%d", &n);
+	if (n == 0)
+		strcpy(e[4], "zero ");
+	for (i = 1; n!=0; i++)
+	{
+		c = n % 10; n /= 10;
+		b = n % 10; n /= 10;
+		a = n % 10; n /= 10;
+		switch (a)
+		{
+		case 1:strcpy(e[i],"one "); break;
+		case 2:strcpy(e[i], "two "); break;
+		case 3:strcpy(e[i], "three "); break;
+		case 4:strcpy(e[i],"four "); break;
+		case 5:strcpy(e[i], "five "); break;
+		case 6:strcpy(e[i], "six "); break;
+		case 7:strcpy(e[i], "seven "); break;
+		case 8:strcpy(e[i], "eight "); break;
+		case 9:strcpy(e[i], "nine "); break;
+		}
+		if (a != 0)
+			strcat(e[i], "hundred ");
+		switch (b)
+		{
+		case 2:strcat(e[i], "twenty "); break;
+		case 3:strcat(e[i], "thirty "); break;
+		case 4:strcat(e[i], "forty "); break;
+		case 5:strcat(e[i], "fifty "); break;
+		case 6:strcat(e[i], "sixty "); break;
+		case 7:strcat(e[i], "seventy "); break;
+		case 8:strcat(e[i], "eighty "); break;
+		case 9:strcat(e[i], "ninety "); break;
+		}
+		if (b == 1)
+		{
+			switch (c)
+			{
+			case 0:strcat(e[i], "ten "); break;
+			case 1:strcat(e[i], "eleven "); break;
+			case 2:strcat(e[i], "twelve "); break;
+			case 3:strcat(e[i], "thirteen "); break;
+			case 4:strcat(e[i], "fourteen "); break;
+			case 5:strcat(e[i], "fiveteen "); break;
+			case 6:strcat(e[i], "sixteen "); break;
+			case 7:strcat(e[i], "seventeen "); break;
+			case 8:strcat(e[i], "eighteen "); break;
+			case 9:strcat(e[i], "nineteen "); break;
+			}
+
+		}
+		else
+		{
+			switch (c)
+			{
+			case 1:strcat(e[i], "one "); break;
+			case 2:strcat(e[i], "two "); break;
+			case 3:strcat(e[i], "three "); break;
+			case 4:strcat(e[i], "four "); break;
+			case 5:strcat(e[i], "five "); break;
+			case 6:strcat(e[i], "six "); break;
+			case 7:strcat(e[i], "seven "); break;
+			case 8:strcat(e[i], "eight "); break;
+			case 9:strcat(e[i], "nine "); break;
+			}
+
+		}
+		switch (i)
+		{
+		case 2:strcat(e[i], "thousand "); break;
+		case 3:strcat(e[i], "million "); break;
+		case 4:strcat(e[i], "billion "); break;
+		}
+	}
+	for (i = 3; i > 0; i--)
+		strcat(e[4], e[i]);
+	i = strlen(e[4]);
+	e[4][i - 1] = 0;
+	puts(e[4]);
+	return 0;
+}
+
+
+/*
+This time, you are supposed to find A+B where A and B are two polynomials.
+
+Input 
+
+Each input file contains one test case. Each case occupies 2 lines, and each line contains the information of a polynomial: K N1 aN1 N2 aN2 ... NK aNK, where K is the number of nonzero terms in the polynomial, Ni and aNi (i=1, 2, ..., K) are the exponents and coefficients, respectively. It is given that 1 <= K <= 10，0 <= NK < ... < N2 < N1 <=1000.
+
+Output
+
+For each test case you should output the sum of A and B in one line, with the same format as the input. Notice that there must be NO extra space at the end of each line. Please be accurate to 1 decimal place.
+
+Sample Input
+
+2 1 2.4 0 3.2
+
+2 2 1.5 1 0.5
+
+Sample Output
+
+3 2 1.5 1 2.9 0 3.2
+*/
+#include<stdio.h>
+int main()
+{
+	int x, y, i, k=0,n,a0[50],b0[50];
+	float a1[50], b1[50], c1[1001] = { 0 };
+
+	scanf("%d", &x);
+	for (i=0;i<x;i++)
+	{
+		scanf("%d", &a0[i]);
+		scanf("%f", &a1[i]);
+	}
+
+	scanf("%d", &y);
+	for (i = 0; i < y; i++)
+	{
+		scanf("%d", &b0[i]);
+		scanf("%f", &b1[i]);
+	}
+
+	for (i = 0; i < x; i++)//取出a中所有系数，并且把他们分别按照指数赋给c的相应位置。
+	{
+		c1[a0[i]] += a1[i];
+	}
+	for (i = 0; i < y; i++)
+	{
+		c1[b0[i]] += b1[i];
+	}
+	for (i = 1000; i >= 0; i--)
+	{
+		if (c1[i] != 0)
+		{
+			k++;
+		}
+	}
+	printf("%d", k);
+	for (i = 1000; i >= 0; i--)
+	{
+		if (c1[i] != 0)
+		{
+			printf(" %d %.1f", i, c1[i]);
+		}
+	}
+	return 0;
+}
+
+
+

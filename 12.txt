@@ -1,0 +1,313 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+/*
+将十进制整数转换为二进制数。
+输入为：
+30
+输出：
+表长：5
+二进制：11110
+*/
+int main()
+{
+	int n, i, a[100];
+	scanf("%d", &n);
+	for (i = 0;n!=0; i++)
+	{
+		a[i] = n % 2;
+		n /= 2;
+	}
+	printf("表长：%d\n", i);
+	printf("二进制：");
+	for (i--; i >= 0; i--)
+	{
+		printf("%d", a[i]);
+	}
+}
+
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+/*
+利用字符栈检查表达式的括号是否匹配。
+提示：
+从左向右扫描表达式，遇到“（”进栈，遇到“)”出栈，扫描完表达式后，若栈空，表示括号匹配。否则，
+（1）当扫描完表达式后棧不空，可断定括号是不匹配的
+（2）表达式未扫描完，需要出棧时棧是空的，此时可断定括号是不匹配的。
+测试样例：
+如输入：
+(a+b)*(5+c)*((22-c)/23+56)
+则输出：
+括号匹配！
+或
+输入:
+2+(5+8))
+输出：
+括号不匹配！
+*/
+int main()
+{
+	int l=0, r=0, i,n;
+	char a[100];
+	gets(a);
+	n = strlen(a);
+	for (i = 0; i < n&&l>=r; i++)
+	{
+		if (a[i] == '(')
+			l++;
+		else if (a[i] == ')')
+			r++;
+	}
+	if (l != r || i != n)
+		printf("括号不匹配！");
+	else
+		printf("括号匹配！");
+}
+
+
+
+/*
+设计一个队列，将任意n个整数入队（n值从键盘读入，n>2），将队列的前两个元素输出（即出队），随后将11和12入队，再次输出队列中的所有元素。
+*/
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	int n, *a, i;
+	scanf("%d", &n);
+	a = (int *)calloc(n + 2, 4);
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &a[i]);
+	}
+	for (i = 0; i < n; i++)
+	{
+		printf("%d ", a[i]);
+	}
+	printf("11 12");
+}
+
+
+
+/*
+输入待查找的字符串：I am a student
+输入所需查找的字符：m
+在字符串I am a student中找到字符m，如有多个m，查找第一个。其位置在4。
+测试样例如下：（输入时待查找的字符串与所需查找的字符用*号隔开）
+输入:
+I am a student*m
+输出：
+4
+*/
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	char a[100], c;
+	int  i, p;
+	for (i = 0;i<100; i++)
+	{
+		scanf("%c", &a[i]);
+		if (a[i] == '*')
+		{
+			a[i] = 0;
+			break;
+		}
+	}
+	scanf("%c", &c);
+	p=strchr(a, c)-a;
+	printf("%d", p+1);
+}
+
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+/*
+输入两个整型数组（假设数组的大小为不超过10）的各个元素，输出不是两个数组共有的元素，并从小到大排序输出。
+输入： 2个数组的元素（小于10个），数组中第一个数据指示元素的个数
+输出：非共有的元素,从小到大排序
+样例：
+输入：
+7 1 2 3 4 5 6 7
+6 5 6 7 8 9 0
+输出：
+0 1 2 3 4 8 9
+*/
+int main()
+{
+	int a[10], b[10], n, m, i, k, j=0, c[10],t;
+	scanf("%d", &n);
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &a[i]);
+	}
+	scanf("%d", &m);
+	for (i = 0; i < m; i++)
+	{
+		scanf("%d", &b[i]);
+	}
+	for (i = 0; i < n; i++)
+	{
+		t = 0;
+		for (k = 0; k < m; k++)
+		{
+			if (a[i] == b[k])
+			{
+				t = 1;
+				break;
+			}
+		}
+		if (t == 0)
+		{
+			c[j] = a[i];
+			j++;
+		}
+	}
+	for (i = 0; i < m; i++)
+	{
+		t = 0;
+		for (k = 0; k < n; k++)
+		{
+			if (a[k] == b[i])
+			{
+				t = 1;
+				break;
+			}
+		}
+		if (t == 0)
+		{
+			c[j] = b[i];
+			j++;
+		}
+	}
+	for (i = 0; i < j - 1; i++)
+	{
+		for (k = 0; k < j - 1; k++)
+		{
+			if (c[k] > c[k + 1])
+			{
+				t = c[k];
+				c[k] = c[k + 1];
+				c[k + 1] = t;
+			}
+		}
+	}
+	printf("%d", c[0]);
+	for (i = 1; i < j; i++)
+	{
+		printf(" %d", c[i]);
+	}
+}
+
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+/*
+有一分数序列如下： 2/1, 3/2, 5/3, 8/5, 13/8, 21/13, .... 即后一项的分母为前一项的分子，后项的分子为前一项分子与分母之和，
+求其前n项之和。 输入：整数，项数 输出：实数,和
+样例：
+6
+10.0071
+*/
+int main()
+{
+	int n,  i, *a, *b;
+	float s = 2;
+	scanf("%d", &n);
+	a = (int *)calloc(n, 4);
+	b = (int *)calloc(n, 4);
+	a[0] = 2; b[0] = 1;
+	for (i = 1; i < n; i++)
+	{
+		b[i] = a[i - 1];
+		a[i] = a[i - 1] + b[i - 1];
+		s += (float)a[i] / b[i];
+	}
+	printf("%.4f", s);
+}
+
+
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include<math.h>
+/*
+定义包含5个英文单词的字符数组（即二维字符数组），键盘输入5个单词，按字典顺序寻找最大和最小单词并输出。
+如输入：
+monday
+tuesday
+thursday
+friday
+Januar
+则输出：
+max:tuesday
+min:friday
+*/
+int main()
+{
+	char a[5][100], max[100], min[100];
+	int i;
+	gets(a[0]);
+	strcpy(max, a[0]);
+	strcpy(min, a[0]);
+	for (i = 1; i < 5; i++)
+	{
+		gets(a[i]);
+		if (strcmp(a[i], max) > 0)
+			strcpy(max, a[i]);
+		else if (strcmp(a[i], min) < 0)
+			strcpy(min, a[i]);
+	}
+	printf("max:%s\n", max);
+	printf("min:%s", min);
+}
+
+
+
+/*
+定义一个含20个元素的整型数组并初始化为a[]={1,2,3,4,5,6,7,8,9,10}。另外定义一个大小为10的整型数组b。要求：
+输入整数n（1<=n<=10），然后输入n个整数存入b中，
+再输入一个整数k（1<= k <=10），将数组b中的n个元素依次插入到数组a中从第k位开始的地方，
+插入完成后，输出数组a（元素间用空格隔开）。
+*/
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int main()
+{
+	int a[] = { 1,2,3,4,5,6,7,8,9,10 }, b[10], n, i, k, p;
+	scanf("%d", &n);
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &b[i]);
+	}
+	scanf("%d", &p);
+	for (i = 0; i < 10; i++)
+	{
+		if (i == p)
+		{
+			for (k = 0; k < n; k++)
+			{
+				printf("%d ", b[k]);
+			}
+		}
+		if(i==9)
+		printf("%d", a[i]);
+		else
+			printf("%d ", a[i]);
+	}
+}

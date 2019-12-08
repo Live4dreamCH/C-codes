@@ -1,0 +1,366 @@
+/*
+定义包含学号、姓名和成绩的学生信息结构类型，完成以下功能：
+（1）键盘输入n个学生信息数据（n从键盘输入）；
+（2）使用“冒泡法”对学生成绩由高到低排序；
+（3）输出排序后学生信息。
+输入输出样例如下,数据间以空格分隔。
+输入：
+3
+100001 wang-li 91
+100002 chen-da-wei 95
+100003 guo-tao 93
+输出为：
+100002 chen-da-wei 95
+100003 guo-tao 93
+100001 wang-li 91
+*/
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int n, t,i,k;
+	char ct[20];
+	struct stu
+	{
+		int number;
+		char name[20];
+		int grade;
+	};
+	struct stu *a;
+	scanf("%d", &n);
+	a =(struct stu *)calloc(n, sizeof(struct stu));
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &a[i].number);
+		scanf("%s", a[i].name);
+		scanf("%d", &a[i].grade);
+	}
+	for (k = 0; k <n-1; k++)
+	{
+		for (i = n-1; i>k ; i--)
+		{
+			if (a[i].grade > a[i - 1].grade)
+			{
+				t = a[i].grade;
+				a[i].grade = a[i - 1].grade;
+				a[i - 1].grade = t;
+				strcpy(ct, a[i].name);
+				strcpy(a[i].name, a[i - 1].name);
+				strcpy(a[i - 1].name, ct);
+				t = a[i].number;
+				a[i].number = a[i - 1].number;
+				a[i - 1].number = t;
+			}
+		}
+	}
+	for (i = 0; i < n-1; i++)
+	{
+		printf("%d %s %d ", a[i].number,a[i].name,a[i].grade);
+	}
+	printf("%d %s %d", a[i].number, a[i].name, a[i].grade);
+}
+
+
+/*创建一个字符线性表（顺序表），并实现其基本操作（如插入，查找，删除，输出等）。应用该线性表，将键盘输入的一行字符插入表中，然后输出表中所有字符及表长；再输入一个字符，从表中删除该字符（重复出现应进行多次删除），最后再次输出表中所有字符及表长。
+
+输入为：
+
+ABCBBDEF 12XYZBA
+
+则输出为：
+
+ABCBBDEF 12XYZBA
+
+16
+
+再输入：
+
+B
+
+则输出为：
+
+ACDEF 12XYZA
+
+12
+
+*/
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int i,k;
+	char c[100],d;
+	gets(c);
+	puts(c);
+	printf("%d\n", strlen(c));
+	scanf("%c", &d);
+	for (i = 0; c[i] != 0; i++)
+	{
+		if (c[i] == d)
+		{
+			for (k = i; c[k] != 0; k++)
+			{
+				c[k] = c[k + 1];
+			}
+			i--;
+		}
+	}
+	puts(c);
+	printf("%d", strlen(c));
+
+}
+
+
+/*
+创建一个链式存储结构（链表），并实现其基本操作（如插入，查找，删除，输出等）。应用该链表，将键盘输入的一行字符插入表中，然后输出表中所有字符及表长；再输入一个字符，从表中删除该字符（重复出现应进行多次删除），最后再次输出表中所有字符及表长。
+
+输入为：
+
+ABCBBDEF 12XYZBA
+
+则输出为：
+
+ABCBBDEF 12XYZBA
+
+16
+
+再输入：
+
+B
+
+则输出为：
+
+ACDEF 12XYZA
+
+12*/
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int i,k;
+	char c[100],d;
+	gets(c);
+	puts(c);
+	printf("%d\n", strlen(c));
+	scanf("%c", &d);
+	for (i = 0; c[i] != 0; i++)
+	{
+		if (c[i] == d)
+		{
+			for (k = i; c[k] != 0; k++)
+			{
+				c[k] = c[k + 1];
+			}
+			i--;
+		}
+	}
+	puts(c);
+	printf("%d", strlen(c));
+
+}
+
+
+/*
+编写字符串反转函数mystrrev，该函数的功能为将指定字符串中的字符顺序颠倒排列。然后再编写主函数验证之。函数原型为 void mystrrev(char string[]) 程序运行结果如下：
+
+
+
+输入：任意1字符串，可能含有空格
+
+输出：逆序后的字符串
+
+样例：
+
+输入：
+
+Hello,everyone
+
+输出： 
+
+enoyreve,olleH
+*/
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+	char c[100];
+	gets(c);
+	strrev(c);
+	puts(c);
+}
+
+
+
+/*
+一个数组A中存有n（n>0）个整数，在不允许使用另外数组的前提下，将每个整数循环向右移m（m>=0）个位置，即将A中的数据由（A0 A1……An-1）变换为（An-m …… An-1 A0 A1……An-m-1）（最后m个数循环移至最前面的m个数）。输入n ( 1<=n<=100)、m（m>=0）及n个整数，输出循环右移m位以后的整数序列。
+
+例如：
+
+输入：
+
+第一行依次输入数组元素的个数和移动的位数
+
+第二行输入数组
+
+输出：
+
+移位后的数组 
+
+样例 
+
+6 2 
+
+1 2 3 4 5 6 
+
+5 6 1 2 3 4
+*/
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	int *a, i, k,n,m,t;
+	scanf("%d %d", &n,&m);
+	a = (int *)calloc(n, sizeof(int));
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &a[i]);
+	}
+	for (k = 0; k < m; k++)
+	{
+		t = a[n - 1];
+		for (i = n-1; i >0; i--)
+		{
+			a[i] = a[i - 1];
+		}
+		a[0] = t;
+	}
+	printf("%d", a[0]);
+	for (i = 1; i < n; i++)
+	{
+		printf(" %d", a[i]);
+	}
+}
+
+
+
+#include<stdio.h>
+/*
+在医院打点滴（吊针）的时候，如果滴起来有规律，先是滴一滴，停一下；然后滴二滴，停一下；再滴三滴，停一下...，现在有一个问题：
+这瓶盐水一共有v毫升，每一滴是d毫升，
+每一滴的速度是一秒（假设最后一滴不到d毫升，则花费的时间也算一秒），停一下的时间也是一秒，
+这瓶水什么时候能滴完呢？（0 < d < v <6000)
+样例（先输入d，然后v）：
+0.5 1.7
+6
+*/
+int main()
+{
+	int i, t = 0,n=1,s=1;//i第几滴，t时间，n休止符
+	float v, d;
+	scanf("%f %f", &d, &v);
+	for (i = 1; v > 0; i++)
+	{
+		if (i == s)
+		{
+			t += 2;
+			n++;
+			s += n;
+		}
+		else
+		{
+			t++;
+		}
+		v -= d;
+	}
+	printf("%d", t);
+}
+
+
+
+#include<stdio.h>
+/*
+在随机产生的n个整数的一维数组中删除所有的最小数。
+编程要求：n从键盘输入,n<100；随机整数的范围[0,20]，用输入的n作为随机函数的“种子数”。
+如输入：
+16
+则输出（所有的随机数，最小数和删除后的数）
+6,20,15,17,10,17,7,10,17,13,1,14,6,1,2,1
+min=1
+6,20,15,17,10,17,7,10,17,13,14,6,2
+*/
+int main()
+{
+	int *a,n, i,min=21,k;
+	scanf("%d", &n);
+	a = (int *)calloc(n, sizeof(int));
+	srand(n);
+	for (i = 0; i < n; i++)
+	{
+		a[i] = rand() % 21;
+		if (a[i] < min)
+			min = a[i];
+	}
+	for (i = 0; i < n-1; i++)
+		printf("%d,", a[i]);
+	printf("%d\n", a[i]);
+	printf("min=%d\n", min);
+	for (i = 0; i < n; i++)
+	{
+		if (a[i] == min)
+		{
+			for (k = i; k < n-1; k++)
+			{
+				a[k] = a[k + 1];
+			}
+			n--;
+		}
+	}
+	for (i = 0; i < n-1; i++)
+	{
+		printf("%d,", a[i]);
+	}
+	printf("%d", a[i]);
+}
+
+
+
+#include<stdio.h>
+/*
+输入两个正整数，输出其中最大公约数和最小公倍数。
+1. 求p和q的最大公约数的欧几里德算法：
+（1）输入p和q（p>q）
+（2）计算p和q的余数r
+（3）r=0时，q即为最大公约数,转第（4）步
+	 否则，令p=q,q=r,继续执行第（2）步
+（4）输出q
+如输入：
+15,25
+则输出：
+最大公约数是5
+最小公倍数是75
+*/
+int ojld(int p, int q)
+{
+	int r;
+	r = p % q;
+	if (r == 0)
+		return q;
+	else
+	{
+		p = q; q = r;
+		ojld(p, q);
+	}
+}
+int main()
+{
+	int p, q,y;
+	scanf("%d,%d", &p, &q);
+	if (p < q)
+	{
+		y= p;
+		p = q; q = y;
+	}
+	y=ojld(p, q);
+	printf("最大公约数是%d\n最小公倍数是%d", y, p*q / y);
+}

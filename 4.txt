@@ -1,0 +1,68 @@
+/*
+编写程序，输入x和a，按以下式子计算y。
+y=loga(x+√x2+1),a>0,a≠1 (√x2+1是对x2+1的开方）
+如输入：1,2.7182
+输出：0.881400
+*/
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	float x,a,y;
+	scanf("%f,%f",&x,&a); 
+	y=log(x+sqrt(x*x+1))/log(a);
+	printf("%f\n",y);
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*输入由4个字母构成的英文单词，按如下格式输出字母，该字母的ASCII码以及该字母的后继字符。
+每行输出数据之间用一个空格分隔。如：
+输入:word
+输出如下：
+w 119 x
+o 111 p
+r 114 s
+d 100 e*/
+#include<stdio.h>
+int main()
+{
+	char a, b, c, d;
+	scanf("%c%c%c%c", &a, &b, &c, &d);
+	printf("%c %d %c\n", a, a, (a + 1));
+	printf("%c %d %c\n", b, b, (b + 1));
+	printf("%c %d %c\n", c, c, (c + 1));	
+	printf("%c %d %c\n", d, d, (d + 1));
+	return 0;
+}
+
+
+
+#define _CRT_SECURE_NO_WARNINGS
+/*
+找零钱问题：假定有伍角、壹角、伍分、贰分和壹分共五种硬币，
+在给顾客找硬币时，一般都会尽可能的选用硬币个数最小的方法。
+例如，当要给某顾客找七角二分钱时，会给他一个伍角，2个壹角和1个贰分的硬币。
+请编写一个程序，输入的是要找给顾客的零钱（以分为单位），输出的是应该找回的各种硬币数目，
+并保证找回的硬币数最少。
+如输入：
+72
+输出：
+wj-1,yj-2,wf-0,lf-1,yf-0
+*/
+#include<stdio.h>
+int main()
+{
+	int money, fifty, ten, five, two, one;
+	scanf("%d", &money);
+	fifty = money / 50; money = money % 50;
+	ten = money / 10; money = money % 10;
+	five = money / 5; money = money % 5;
+	two = money / 2; money = money % 2;
+	one = money;
+	printf("wj-%d,yj-%d,wf-%d,lf-%d,yf-%d\n", fifty, ten, five, two, one);
+	//不合法语句//system ("pause");
+	return 0;
+}
